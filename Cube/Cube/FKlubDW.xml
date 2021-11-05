@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<!-- diff -->
-<Schema name="FKlubDW">
-
- <!-- Define your cube incl. its dimensions and measures here. See FoodMart.xml for an example and http://mondrian.pentaho.com/documentation/schema.php for documentation -->
-
-</Schema>
