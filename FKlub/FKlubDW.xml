@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<!-- diff -->
+<Schema name="FKlubDW">
+    <!-- Define your cube incl. its dimensions and measures here. See FoodMart.xml for an example and http://mondrian.pentaho.com/documentation/schema.php for documentation -->
+    <Cube name="Sales">
+        <Table name="sales_fact_table" />
+        <Dimension name="member_dimension_table" foreignKey="member_id">
+                <Hierarchy hasAll="true" primaryKey="id">
+                    <Table name="member_dimension_table" />
+                    <Level name="Active" column="active" type="Boolean" uniqueMembers="false" />
+                    <Level name="Year" column="year" type="Numeric" uniqueMembers="true" />
+                    <Level name="Gender" column="gender" type="String" uniqueMembers="true" />
+                    <Level name="Want_spam" column="want_spam" type="Boolean" uniqueMembers="false" />
+                    <Level name="Balance" column="balance" type="Numeric" uniqueMembers="true" />
+                    <Level name="Undo_count" column="undo_count" type="Numeric" uniqueMembers="true" />
+                </Hierarchy>
+        </Dimension>
+        <Dimension name="product_dimension_table" foreignKey="product_id">
+                <Hierarchy hasAll="true" primaryKey="id">
+                    <Table name="product_dimension_table" />
+                    <Level name="Name" column="name" type="String" uniqueMembers="false" />
+                    <Level name="Price" column="price" type="Numeric" uniqueMembers="false" />
+                    <Level name="Active" column="active" uniqueMembers="false" />
+                    <Level name="Deactivate_date" column="deactivate_date" type="Numeric" uniqueMembers="false" />
+                    <Level name="Quantity" column="quantity" type="Numeric" uniqueMembers="false" />
+                    <Level name="Alcohol_content_ml" column="alcohol_content_ml" type="Numeric" uniqueMembers="false" />
+                    <Level name="Start_date" column="start_date" type="Numeric" uniqueMembers="false" />
+                    <Level name="Category" column="category" type="String" uniqueMembers="false" />
+                </Hierarchy>
+        </Dimension>
+        <Dimension name="date_dimension_table" foreignKey="date_id">
+            <Hierarchy hasAll="true" primaryKey="id">
+                <Table name="date_dimension_table" />
+                <Level name="Year" column="year" type="Numeric" uniqueMembers="true" />
+                <Level name="Month" column="month" type="Numeric" uniqueMembers="false" />
+                <Level name="Day" column="day" type="Numeric" uniqueMembers="false" />
+            </Hierarchy>
+        </Dimension>
+        <Measure name="Price" column="price" aggregator="sum"
+      formatString="Currency"/>
+    </Cube>
+</Schema>
